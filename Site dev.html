@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- Informações essenciais para o navegador -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Título que aparece na aba do navegador e nos resultados de busca -->
+    <title>Mayk - Designer & Desenvolvedor Web</title>
+
+    <!-- Descrição do seu site para os buscadores (SEO) -->
+    <meta name="description" content="Portfólio de Mayk, designer e desenvolvedor web apaixonado por criar soluções digitais completas, do visual ao código.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- ESTILOS CSS EMBUTIDOS -->
+    <style>
+        /* ==================== VARIÁVEIS GLOBAIS E RESET ==================== */
+        :root {
+            --cor-primaria: #00a8cc;
+            --cor-primaria-escura: #007a99;
+            --cor-fundo: #0a0a0a;
+            --cor-fundo-secundaria: #1a1a1a;
+            --cor-texto: #f0f0f0;
+            --cor-texto-secundaria: #a0a0a0;
+            --fonte-principal: 'Poppins', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--fonte-principal); background-color: var(--cor-fundo); color: var(--cor-texto); line-height: 1.6; }
+        h1, h2, h3 { color: var(--cor-texto); line-height: 1.2; }
+        h2 { font-size: 2.5rem; margin-bottom: 2rem; text-align: center; }
+        a { color: var(--cor-primaria); text-decoration: none; transition: color 0.3s ease; }
+        a:hover { color: var(--cor-primaria-escura); }
+        section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
+
+        /* ==================== ANIMAÇÕES ==================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Atrasos para animações escalonadas */
+        .delay-200 { transition-delay: 200ms; }
+        .delay-400 { transition-delay: 400ms; }
+
+
+        /* ==================== CABEÇALHO E NAVEGAÇÃO ==================== */
+        header { position: fixed; top: 0; left: 0; width: 100%; padding: 1rem 2rem; background-color: rgba(10, 10, 10, 0.8); backdrop-filter: blur(10px); z-index: 100; transition: background-color 0.3s ease; }
+        header nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--cor-texto); }
+        header nav ul { list-style: none; display: flex; gap: 2rem; }
+        header nav ul li a { font-weight: 500; color: var(--cor-texto-secundaria); }
+        header nav ul li a:hover { color: var(--cor-primaria); }
+
+        /* ==================== SEÇÃO INÍCIO (HERO) ==================== */
+        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .hero p { font-size: 1.2rem; color: var(--cor-texto-secundaria); margin-bottom: 2rem; max-width: 600px; }
+        .cta-button { display: inline-block; background-color: var(--cor-primaria); color: #fff; padding: 0.8rem 2rem; border-radius: 5px; font-weight: 700; transition: background-color 0.3s ease; }
+        .cta-button:hover { background-color: var(--cor-primaria-escura); color: #fff; }
+
+        /* ==================== SEÇÃO SOBRE (COM FOTO) ==================== */
+        .sobre-container { display: flex; flex-direction: column; align-items: center; gap: 3rem; }
+        .profile-picture-container {
+            width: 250px;
+            height: 250px;
+            flex-shrink: 0;
+        }
+        .profile-picture-container .profile-pic {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--cor-primaria);
+        }
+        .sobre-texto { max-width: 600px; }
+        
+        .skills-list { list-style: none; display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem; }
+        .skills-list li { 
+            background-color: var(--cor-fundo-secundaria); 
+            padding: 0.5rem 1rem; 
+            border-radius: 5px; 
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .skills-list svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--cor-texto-secundaria);
+        }
+
+        /* ==================== SEÇÃO PRODUTOS ==================== */
+        .produtos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .produto-card { background-color: var(--cor-fundo-secundaria); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .produto-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); }
+        .produto-card img { width: 100%; height: 200px; object-fit: cover; }
+        .produto-card h3 { font-size: 1.25rem; margin: 1.5rem 1.5rem 0.5rem 1.5rem; }
+        .produto-card p { color: var(--cor-texto-secundaria); flex-grow: 1; margin: 0 1.5rem 1rem 1.5rem; }
+        .produto-preco { font-size: 1.5rem; font-weight: 700; color: var(--cor-primaria); margin: 0 1.5rem 1rem 1.5rem; }
+        .produto-links { padding: 0 1.5rem 1.5rem 1.5rem; }
+        .comprar-button { display: block; width: 100%; text-align: center; background-color: var(--cor-primaria); color: #fff; padding: 0.8rem 1rem; border-radius: 5px; font-weight: 700; transition: background-color 0.3s ease; cursor: pointer; border: none; font-family: var(--fonte-principal); }
+        .comprar-button:hover { background-color: var(--cor-primaria-escura); color: #fff; }
+        .produto-card:nth-child(2) { transition-delay: 200ms; }
+        .produto-card:nth-child(3) { transition-delay: 400ms; }
+
+        /* ==================== MODAL DE CONTATO ==================== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 200;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-overlay.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background-color: var(--cor-fundo-secundaria);
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        .modal-overlay.visible .modal-content {
+            transform: scale(1);
+        }
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--cor-texto);
+            font-size: 2rem;
+            cursor: pointer;
+        }
+        .modal-content h2 { margin-bottom: 1rem; }
+        .modal-content p { color: var(--cor-texto-secundaria); margin-bottom: 2rem; }
+        .modal-links { display: flex; flex-direction: column; gap: 1rem; }
+        .modal-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background-color: var(--cor-fundo);
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            color: var(--cor-texto);
+        }
+        .modal-link:hover {
+            background-color: #2a2a2a;
+            color: var(--cor-primaria);
+        }
+        .modal-link svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        /* ==================== RODAPÉ ==================== */
+        footer { text-align: center; padding: 2rem; border-top: 1px solid var(--cor-fundo-secundaria); color: var(--cor-texto-secundaria); }
+        .footer-note {
+            max-width: 600px;
+            margin: 0 auto 1.5rem auto;
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+        .social-links { margin-bottom: 1rem; display: flex; justify-content: center; gap: 1.5rem; }
+        .social-links a { margin: 0 0.5rem; color: var(--cor-texto-secundaria); font-size: 1.2rem; }
+        .social-links a svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--cor-texto-secundaria);
+            transition: fill 0.3s ease;
+        }
+        .social-links a:hover svg {
+            fill: var(--cor-primaria);
+        }
+
+        /* ==================== RESPONSIVIDADE (MEDIA QUERIES) ==================== */
+        @media (min-width: 768px) {
+            h2 { font-size: 3rem; }
+            .hero h1 { font-size: 4rem; }
+            .sobre-container { flex-direction: row; text-align: left; gap: 4rem; align-items: center; }
+        }
+        @media (max-width: 600px) {
+            header nav ul { display: none; }
+            .hero h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== CABEÇALHO E NAVEGAÇÃO ==================== -->
+    <header>
+        <nav>
+            <a href="#" class="logo">Mayk</a>
+            <ul>
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#produtos">Produtos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ==================== CONTEÚDO PRINCIPAL ==================== -->
+    <main>
+        <!-- Seção 1: Início (Hero Section) -->
+        <section id="inicio" class="hero">
+            <h1 class="reveal visible">Designer & Desenvolvedor Web</h1>
+            <p class="reveal visible delay-200">Unindo design criativo e código limpo para criar experiências digitais memoráveis.</p>
+            <a href="#produtos" class="cta-button reveal visible delay-400">Veja meus produtos</a>
+        </section>
+
+        <!-- Seção 2: Sobre Mim -->
+        <section id="sobre">
+            <h2 class="reveal">Sobre Mim</h2>
+            <div class="sobre-container">
+                <div class="profile-picture-container reveal">
+                    <img src="https://placehold.co/250x250/1a1a1a/00a8cc?text=M&font=poppins" alt="Foto de perfil de Mayk" class="profile-pic">
+                </div>
+                <div class="sobre-texto reveal delay-200">
+                    <p>Olá! Sou Mayk, estudante de programação e um profissional que atua na intersecção entre design e desenvolvimento. Minha abordagem une a estética e a usabilidade do design com a lógica e a performance do código para construir sites completos.</p>
+                    <p>Aqui estão algumas tecnologias e ferramentas que utilizo no meu dia a dia:</p>
+                    <ul class="skills-list">
+                        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M1,9H3V11H1V9M5,9H7V11H5V9M9,9H11V11H9V9M13,9H23V11H13V9M1,13H3V15H1V13M5,13H7V15H5V13M9,13H11V15H9V13M13,13H23V15H13V13M1,5H3V7H1V5M5,5H7V7H5V5M9,5H11V7H9V5M13,5H23V7H13V5Z"/></svg> HTML5</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M1,9H3V11H1V9M5,9H7V11H5V9M9,9H11V11H9V9M13,9H23V11H13V9M1,13H3V15H1V13M5,13H7V15H5V13M9,13H11V15H9V13M13,13H23V15H13V13M1,5H3V7H1V5M5,5H7V7H5V5M9,5H11V7H9V5M13,5H23V7H13V5Z"/></svg> CSS3</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,3H4A2,2 0 0,0 2,5V19A2,2 0 0,0 4,21H20A2,2 0 0,0 22,19V5A2,2 0 0,0 20,3M11,17H9.5V11.5H8V17H6.5V10H11V17M17.5,17H13V15.5L15.25,13.09C15.8,12.5 16.12,12.06 16.12,11.5C16.12,10.87 15.62,10.37 15,10.37C14.33,10.37 13.88,10.88 13.88,11.5H12.38C12.38,10.03 13.54,9 15,9C16.5,9 17.62,10.03 17.62,11.5C17.62,12.31 17.2,13.08 16.33,14L14.5,15.88V16H17.5V17Z"/></svg> JavaScript</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.83,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z"/></svg> Git & GitHub</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 3: Produtos & Serviços -->
+        <section id="produtos">
+            <h2 class="reveal">Produtos & Serviços</h2>
+            <div class="produtos-grid">
+                <article class="produto-card reveal">
+                    <img src="https://placehold.co/600x400/0a0a0a/00a8cc?text=E-commerce&font=poppins" alt="Serviço de criação de Site de Vendas">
+                    <h3>Site de Vendas</h3>
+                    <p>Crie sua loja online completa, com catálogo de produtos, carrinho de compras e integração de pagamentos.</p>
+                    <div class="produto-preco">A negociar</div>
+                    <div class="produto-links"><button class="comprar-button">Contratar</button></div>
+                </article>
+                <article class="produto-card reveal">
+                    <img src="https://placehold.co/600x400/0a0a0a/00a8cc?text=Comunidade&font=poppins" alt="Serviço de criação de Fóruns">
+                    <h3>Fóruns</h3>
+                    <p>Construa uma comunidade online engajada com um fórum de discussão personalizado e moderado.</p>
+                    <div class="produto-preco">A negociar</div>
+                    <div class="produto-links"><button class="comprar-button">Saber Mais</button></div>
+                </article>
+                <article class="produto-card reveal">
+                    <img src="https://placehold.co/600x400/0a0a0a/00a8cc?text=Empresarial&font=poppins" alt="Serviço de criação de Site Institucional">
+                    <h3>Site Institucional</h3>
+                    <p>Apresente sua empresa, serviços e portfólio ao mundo com um site profissional e moderno.</p>
+                    <div class="produto-preco">A negociar</div>
+                    <div class="produto-links"><button class="comprar-button">Contratar</button></div>
+                </article>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==================== RODAPÉ ==================== -->
+    <footer>
+        <p class="footer-note reveal">Este site serve como um portfólio e demonstração do meu trabalho. Se você tem interesse em um site exclusivo, criado do zero e totalmente personalizado, entre em contato comigo através das redes abaixo.</p>
+        <div class="social-links reveal">
+            <a href="https://wa.me/553498272286" target="_blank" title="WhatsApp">
+                <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.31 20.62C8.75 21.41 10.36 21.82 12.04 21.82C17.5 21.82 21.95 17.37 21.95 11.91C21.95 9.27 20.92 6.83 19.05 4.96C17.18 3.09 14.74 2 12.04 2M12.04 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.71 20.28 11.91C20.28 16.47 16.65 20.1 12.04 20.1C10.56 20.1 9.14 19.68 7.9 18.91L7.54 18.7L4.3 19.54L5.15 16.41L4.92 16.04C4.08 14.71 3.62 13.21 3.62 11.91C3.62 7.35 7.25 3.67 12.04 3.67M17.14 14.6C16.96 15.09 15.89 15.65 15.39 15.81C14.9 15.97 14.33 16.02 13.84 15.86C13.35 15.71 12.31 15.38 11.1 14.28C9.61 12.91 8.53 11.23 8.38 10.94C8.23 10.64 8.39 10.45 8.54 10.3C8.69 10.15 8.87 9.93 9.06 9.74C9.25 9.55 9.34 9.4 9.47 9.15C9.6 8.9 9.55 8.71 9.45 8.51C9.35 8.31 8.81 6.91 8.56 6.32C8.31 5.73 8.06 5.83 7.89 5.83C7.71 5.83 7.46 5.83 7.21 5.83C6.96 5.83 6.62 5.93 6.32 6.22C6.02 6.52 5.31 7.2 5.31 8.51C5.31 9.82 6.32 11.07 6.47 11.27C6.62 11.47 8.81 14.92 12.21 16.46C13.62 17.03 14.63 16.93 15.39 16.83C16.15 16.73 17.32 16.1 17.57 15.4C17.82 14.7 17.82 14.1 17.72 13.95C17.62 13.81 17.32 13.71 17.14 13.56L17.14 14.6Z"/></svg>
+            </a>
+            <a href="https://github.com/iMay-bug" target="_blank" title="GitHub">
+                <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.83,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/maykifg" target="_blank" title="Instagram">
+                <svg viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg>
+            </a>
+        </div>
+        <p>&copy; 2025 Mayk. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- ==================== MODAL DE CONTATO ==================== -->
+    <div id="contact-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <h2>Entre em Contato</h2>
+            <p>Escolha uma das opções abaixo para falar comigo.</p>
+            <div class="modal-links">
+                <a href="https://wa.me/553498272286" target="_blank" class="modal-link">
+                    <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.31 20.62C8.75 21.41 10.36 21.82 12.04 21.82C17.5 21.82 21.95 17.37 21.95 11.91C21.95 9.27 20.92 6.83 19.05 4.96C17.18 3.09 14.74 2 12.04 2M12.04 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.71 20.28 11.91C20.28 16.47 16.65 20.1 12.04 20.1C10.56 20.1 9.14 19.68 7.9 18.91L7.54 18.7L4.3 19.54L5.15 16.41L4.92 16.04C4.08 14.71 3.62 13.21 3.62 11.91C3.62 7.35 7.25 3.67 12.04 3.67M17.14 14.6C16.96 15.09 15.89 15.65 15.39 15.81C14.9 15.97 14.33 16.02 13.84 15.86C13.35 15.71 12.31 15.38 11.1 14.28C9.61 12.91 8.53 11.23 8.38 10.94C8.23 10.64 8.39 10.45 8.54 10.3C8.69 10.15 8.87 9.93 9.06 9.74C9.25 9.55 9.34 9.4 9.47 9.15C9.6 8.9 9.55 8.71 9.45 8.51C9.35 8.31 8.81 6.91 8.56 6.32C8.31 5.73 8.06 5.83 7.89 5.83C7.71 5.83 7.46 5.83 7.21 5.83C6.96 5.83 6.62 5.93 6.32 6.22C6.02 6.52 5.31 7.2 5.31 8.51C5.31 9.82 6.32 11.07 6.47 11.27C6.62 11.47 8.81 14.92 12.21 16.46C13.62 17.03 14.63 16.93 15.39 16.83C16.15 16.73 17.32 16.1 17.57 15.4C17.82 14.7 17.82 14.1 17.72 13.95C17.62 13.81 17.32 13.71 17.14 13.56L17.14 14.6Z"/></svg>
+                    <span>WhatsApp</span>
+                </a>
+                <a href="https://www.instagram.com/maykifg" target="_blank" class="modal-link">
+                    <svg viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"></path></svg>
+                    <span>Instagram</span>
+                </a>
+                <a href="https://github.com/iMay-bug" target="_blank" class="modal-link">
+                    <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.83,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z"></path></svg>
+                    <span>GitHub</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT PARA O MODAL E ANIMAÇÕES -->
+    <script>
+        // Lógica do Modal
+        const openModalButtons = document.querySelectorAll('.comprar-button');
+        const closeModalButton = document.querySelector('.modal-close');
+        const modalOverlay = document.getElementById('contact-modal');
+
+        const toggleModal = () => {
+            modalOverlay.classList.toggle('visible');
+        }
+
+        openModalButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                toggleModal();
+            });
+        });
+
+        closeModalButton.addEventListener('click', toggleModal);
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                toggleModal();
+            }
+        });
+
+        // Lógica da Animação de Scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        const elementsToReveal = document.querySelectorAll('.reveal');
+        elementsToReveal.forEach((el) => observer.observe(el));
+
+    </script>
+
+</body>
+</html>

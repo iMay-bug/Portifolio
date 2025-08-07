@@ -1,0 +1,313 @@
+/* ==================== VARIÁVEIS GLOBAIS E RESET ==================== */
+
+/* :root é onde definimos nossas variáveis de CSS. 
+   Mude as cores aqui para alterar o site inteiro! */
+:root {
+    --cor-primaria: #00a8cc; /* Um azul/ciano vibrante */
+    --cor-primaria-escura: #007a99;
+    --cor-fundo: #0a0a0a; /* Fundo escuro (quase preto) */
+    --cor-fundo-secundaria: #1a1a1a; /* Um cinza bem escuro para os cards */
+    --cor-texto: #f0f0f0; /* Texto claro (quase branco) */
+    --cor-texto-secundaria: #a0a0a0; /* Um cinza mais claro para subtextos */
+    --fonte-principal: 'Poppins', sans-serif;
+}
+
+/* Reset básico para remover estilos padrão dos navegadores */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Efeito de rolagem suave quando clicamos nos links do menu */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--fonte-principal);
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    color: var(--cor-texto);
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+a {
+    color: var(--cor-primaria);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--cor-primaria-escura);
+}
+
+section {
+    padding: 6rem 2rem; /* 6rem em cima/baixo, 2rem nos lados */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ==================== CABEÇALHO E NAVEGAÇÃO ==================== */
+header {
+    position: fixed; /* Fica fixo no topo da página */
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem 2rem;
+    background-color: rgba(10, 10, 10, 0.8); /* Fundo com leve transparência */
+    backdrop-filter: blur(10px); /* Efeito de vidro fosco */
+    z-index: 100;
+    transition: background-color 0.3s ease;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--cor-texto);
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem; /* Espaço entre os itens do menu */
+}
+
+header nav ul li a {
+    font-weight: 500;
+    color: var(--cor-texto-secundaria);
+}
+
+header nav ul li a:hover {
+    color: var(--cor-primaria);
+}
+
+/* ==================== SEÇÃO INÍCIO (HERO) ==================== */
+.hero {
+    min-height: 100vh; /* Ocupa a altura inteira da tela */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: var(--cor-texto-secundaria);
+    margin-bottom: 2rem;
+    max-width: 600px;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: var(--cor-primaria);
+    color: #fff;
+    padding: 0.8rem 2rem;
+    border-radius: 5px;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: var(--cor-primaria-escura);
+    color: #fff;
+}
+
+/* ==================== SEÇÃO SOBRE ==================== */
+.sobre-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+}
+
+.skills-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.skills-list li {
+    background-color: var(--cor-fundo-secundaria);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+/* ==================== SEÇÃO PROJETOS ==================== */
+.projetos-grid {
+    display: grid;
+    /* Grid responsivo: cria colunas de no mínimo 300px e no máximo 1 fração do espaço */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.projeto-card {
+    background-color: var(--cor-fundo-secundaria);
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.projeto-card:hover {
+    transform: translateY(-5px); /* Efeito de levantar o card */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.projeto-card h3 {
+    margin-bottom: 0.5rem;
+}
+
+.projeto-card p {
+    color: var(--cor-texto-secundaria);
+    flex-grow: 1; /* Faz a descrição ocupar o espaço disponível */
+    margin-bottom: 1rem;
+}
+
+.projeto-card .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.projeto-card .tags span {
+    background-color: var(--cor-fundo);
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+}
+
+.projeto-links a {
+    margin-right: 1rem;
+    font-weight: 500;
+}
+
+/* ==================== SEÇÃO CONTATO ==================== */
+#contato {
+    max-width: 700px;
+    text-align: center;
+}
+
+#contato p {
+    margin-bottom: 2rem;
+    color: var(--cor-texto-secundaria);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    text-align: left;
+}
+
+form label {
+    font-weight: 500;
+}
+
+form input, form textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--cor-fundo-secundaria);
+    background-color: var(--cor-fundo-secundaria);
+    border-radius: 5px;
+    color: var(--cor-texto);
+    font-family: var(--fonte-principal);
+}
+
+form button {
+    align-self: flex-start; /* Alinha o botão à esquerda */
+    padding: 0.8rem 2rem;
+    background-color: var(--cor-primaria);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: var(--cor-primaria-escura);
+}
+
+
+/* ==================== RODAPÉ ==================== */
+footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid var(--cor-fundo-secundaria);
+    color: var(--cor-texto-secundaria);
+}
+
+.social-links {
+    margin-bottom: 1rem;
+}
+
+.social-links a {
+    margin: 0 0.5rem;
+    color: var(--cor-texto-secundaria);
+    font-size: 1.2rem;
+}
+
+.social-links a:hover {
+    color: var(--cor-primaria);
+}
+
+/* ==================== RESPONSIVIDADE (MEDIA QUERIES) ==================== */
+
+/* Para telas de tablet e maiores */
+@media (min-width: 768px) {
+    h2 {
+        font-size: 3rem;
+    }
+
+    .hero h1 {
+        font-size: 4rem;
+    }
+    
+    .sobre-container {
+        flex-direction: row; /* Coloca o texto ao lado da imagem (que você adicionará) */
+        text-align: left;
+        gap: 4rem;
+    }
+}
+
+/* Para telas pequenas (escondendo o menu de texto) */
+@media (max-width: 600px) {
+    header nav ul {
+       display: none; /* Em um próximo passo, podemos substituir por um ícone de menu "hambúrguer" */
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+}
